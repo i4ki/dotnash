@@ -1,0 +1,17 @@
+# Download any required dependencies
+
+fn getnashlib() {
+        -test -d $NASHPATH + "/lib/nashlib"
+
+        if $status != "0" {
+                echo "\033[31m» nashlib not installed\033[0m"
+                echo "\033[32m» Trying to download dependencies...\033[0m"
+                -mkdir -p $NASHPATH + "/lib"
+                cd $NASHPATH + "/lib"
+                git clone https://github.com/NeowayLabs/nashlib.git
+                import nashlib/all
+                cd $OLDPWD
+        }
+}
+
+getnashlib()

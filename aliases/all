@@ -1,0 +1,4 @@
+# import all my aliases
+
+import "./cd"
+import "gohelpers"
