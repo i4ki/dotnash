@@ -1,9 +1,22 @@
 # Git aliases
 
-fn gpull() {
+fn gitbranch() {
         branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
+        return $branch
+}
+
+fn gpull() {
+        branch <= gitbranch()
         git pull origin $branch
         refreshPrompt()
 }
 
 bindfn gpull gpull
+
+fn gpush() {
+     branch <= gitbranch()
+     git push origin $branch
+     refreshPrompt()
+}
+
+bindfn gpush gpush
