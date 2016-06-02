@@ -1,5 +1,6 @@
 # import all my aliases
 
 import "cd"
+import "ls"
 import "gohelpers"
 import "githelpers"
