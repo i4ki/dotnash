@@ -15,3 +15,5 @@ Checking connectivity... done.
 λ> cd .nash
 (master)λ> 
 ```
+
+If you want this nash configuration then first fork this project and modify the file `conf/env` to export the required environment variables of your setup.
