@@ -6,4 +6,4 @@ import "conf/env"
 import "aliases/all"
 
 # only to apply current PROMPT using new cd alias
-cd .
+refreshPrompt()

@@ -1,4 +1,5 @@
 # import all my aliases
 
-import "./cd"
+import "cd"
 import "gohelpers"
+import "githelpers"

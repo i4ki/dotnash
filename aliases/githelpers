@@ -1,0 +1,9 @@
+# Git aliases
+
+fn gpull() {
+        branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
+        git pull origin $branch
+        refreshPrompt()
+}
+
+bindfn gpull gpull

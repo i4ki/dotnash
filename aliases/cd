@@ -9,11 +9,7 @@ PROMPT = $DEFPROMPT
 
 setenv PROMPT
 
-# cd overrides built-in cd
-# Add the current branch before prompt (if current directory is a git repo)
-fn cd(path) {
-        cd $path
-
+fn refreshPrompt() {
         -test -d ./.git
 
         if $status != "0" {
@@ -24,6 +20,14 @@ fn cd(path) {
         }
 
         setenv PROMPT
+}
+
+# cd overrides built-in cd
+# Add the current branch before prompt (if current directory is a git repo)
+fn cd(path) {
+        cd $path
+
+        refreshPrompt()
 }
 
 bindfn cd cd

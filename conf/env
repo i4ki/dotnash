@@ -6,7 +6,11 @@ GOROOT = $HOME + "/projects/personal/go"
 LBIN   = $HOME + "/bin"
 DPATH  = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
 PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin"
+LANG   = "en_US.UTF-8"
+SHELL  = $HOME + "/projects/go-workspace/bin/nash"
 
+setenv SHELL
+setenv LANG
 setenv PLAN9
 setenv GOPATH
 setenv GOROOT
