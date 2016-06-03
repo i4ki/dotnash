@@ -3,6 +3,7 @@
 # syntax sugar to cd into go project
 fn gocd(path) {
         cd $GOPATH + "/src/" + $path
+        refreshPrompt()
 }
 
 bindfn gocd gocd
