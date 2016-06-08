@@ -1,7 +1,8 @@
 # .nash
 
 ```sh
-λ> cd $HOME
+# go to $HOME
+λ> cd 
 λ> git clone https://github.com/tiago4orion/dotnash.git .nash
 λ> nash
 » nashlib not installed
