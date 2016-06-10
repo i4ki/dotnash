@@ -25,6 +25,12 @@ fn refreshPrompt() {
 # cd overrides built-in cd
 # Add the current branch before prompt (if current directory is a git repo)
 fn cd(path) {
+        if $path == "" {
+                path = $HOME
+        } else if $path == "~" {
+                path = $HOME
+        }
+
         cd $path
 
         refreshPrompt()
