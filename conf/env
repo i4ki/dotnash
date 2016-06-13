@@ -1,11 +1,14 @@
 # Setup environment variables
 
-PLAN9  = "/usr/local/plan9"
-GOPATH = $HOME + "/projects/go-workspace"
-GOROOT = $HOME + "/projects/personal/go"
-LBIN   = $HOME + "/bin"
-DPATH  = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
-PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin"
+PLAN9   = "/usr/local/plan9"
+GOPATH  = $HOME + "/projects/go-workspace"
+GOROOT  = $HOME + "/projects/personal/go"
+LBIN    = $HOME + "/bin"
+FZFPATH = $HOME + "/.fzf"
+
+DPATH   = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
+
+PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin"
 LANG   = "en_US.UTF-8"
 SHELL  = $HOME + "/projects/go-workspace/bin/nash"
 
