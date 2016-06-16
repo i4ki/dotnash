@@ -4,6 +4,9 @@
 # go to $HOME
 λ> cd 
 λ> git clone https://github.com/tiago4orion/dotnash.git .nash
+# Update your environment variables
+λ> vim ./.nash/conf/env 
+# Run nash to load the new customizations
 λ> nash
 » nashlib not installed
 » Trying to download dependencies...

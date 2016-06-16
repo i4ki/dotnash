@@ -16,7 +16,7 @@ fn refreshPrompt() {
                 PROMPT = $DEFPROMPT
         } else {
                 branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
-                PROMPT = "(" + $NASH_GREEN + $branch + $NASH_RESET + ")" + $DEFPROMPT
+                PROMPT = $NASH_GREEN + "git:(" + $branch + $NASH_RESET + ")" + $DEFPROMPT
         }
 
         setenv PROMPT
