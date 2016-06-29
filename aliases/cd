@@ -5,14 +5,17 @@ PROMPTSYM = "λ> "
 DEFPROMPT = $NASH_RED+$PROMPTSYM+$NASH_RESET
 PROMPT = $DEFPROMPT
 setenv PROMPT
+
 fn refreshPrompt() {
 	-test -d ./.git
+
 	if $status != "0" {
 		PROMPT = $DEFPROMPT
 	} else {
 		branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
 		PROMPT = $NASH_GREEN+"git:("+$branch+$NASH_RESET+")"+$DEFPROMPT
 	}
+
 	setenv PROMPT
 }
 
@@ -24,6 +27,7 @@ fn cd(path) {
 	} else if $path == "~" {
 		path = $HOME
 	}
+
 	builtin cd $path
 	refreshPrompt()
 }
