@@ -6,10 +6,19 @@ GOPATH    = $HOME + "/.gvm/pkgsets/" + $GOVERSION + "/global"
 GOROOT    = $HOME + "/.gvm/gos/" + $GOVERSION
 LBIN      = $HOME + "/bin"
 FZFPATH   = $HOME + "/.fzf"
+UE4PATH   = $HOME + "/unreal-engine/Engine/Binaries/Linux"
+MLTONPATH = $HOME + "/projects/personal/mlton"
+SMLNJPATH = $HOME + "/projects/personal/smlnj"
+
+# haxe config
+HAXE_HOME     = $HOME + "/projects/3rd/haxe"
+HAXE_STD_PATH = $HAXE_HOME + "/std:."
+NEKOPATH      = "/usr/bin/neko"
 
 DPATH   = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
 
-PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin"
+PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin:" + $HAXE_HOME + ":" + $UE4PATH + ":" + $MLTONPATH + "/install/usr/bin:" + $SMLNJPATH + "/bin"
+
 LANG   = "en_US.UTF-8"
 SHELL  = $GOPATH + "/bin/nash"
 
@@ -19,3 +28,13 @@ setenv PLAN9
 setenv GOPATH
 setenv GOROOT
 setenv PATH
+
+# haxe stuff
+setenv HAXE_HOME
+setenv HAXE_STD_PATH
+setenv NEKOPATH
+setenv UE4PATH
+
+# sml
+setenv SMLNJPATH
+setenv MLTONPATH

@@ -31,7 +31,7 @@ fn cd(path) {
                 path = $HOME
         }
 
-        cd $path
+        builtin cd $path
 
         refreshPrompt()
 }
