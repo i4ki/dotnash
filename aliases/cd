@@ -11,6 +11,7 @@ setenv PROMPT
 
 fn refreshPrompt() {
         -test -d ./.git
+        IFS = ""
 
         if $status != "0" {
                 PROMPT = $DEFPROMPT
@@ -31,7 +32,7 @@ fn cd(path) {
                 path = $HOME
         }
 
-        builtin cd $path
+        chdir($path)
 
         refreshPrompt()
 }
