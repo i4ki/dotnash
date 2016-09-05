@@ -29,7 +29,7 @@ fn cd(path) {
 		path = $HOME
 	}
 
-	builtin cd $path
+        chdir($path)
 	refreshPrompt()
 }
 
