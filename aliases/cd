@@ -12,6 +12,7 @@ fn refreshPrompt() {
 	if $status != "0" {
 		PROMPT = $DEFPROMPT
 	} else {
+                IFS = ""
 		branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
 		PROMPT = $NASH_GREEN+"git:("+$branch+$NASH_RESET+")"+$DEFPROMPT
 	}

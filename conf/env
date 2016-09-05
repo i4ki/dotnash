@@ -1,17 +1,23 @@
 # Setup environment variables
+PLAN9      = "/usr/local/plan9"
+ACMEPATH   = $HOME+"/acme"
+GOPATH     = $HOME+"/projects/go-workspace"
+GOROOT     = $HOME+"/projects/personal/go"
+LBIN       = $HOME+"/bin"
+FZFPATH    = $HOME+"/.fzf"
+SMLNJPATH  = $HOME+"/projects/personal/smlnj"
+MLTONPATH  = $HOME+"/projects/personal/mlton"
 
-PLAN9    = "/usr/local/plan9"
-ACMEPATH = $HOME + "/acme"
-GOPATH   = $HOME + "/projects/go-workspace"
-GOROOT   = $HOME + "/projects/personal/go"
-LBIN     = $HOME + "/bin"
-FZFPATH  = $HOME + "/.fzf"
+# name required by PONYO
+PONYO_ROOT = $HOME + "/projects/3rdparty/ponyo"
 
 DPATH = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
+PATH = $DPATH+":"+$PLAN9+"/bin:"+$LBIN+":"+$GOROOT+"/bin:"+$GOPATH+"/bin:"+$FZFPATH+"/bin:"+$ACMEPATH+":"+$MLTONPATH+"/bin:"+$SMLNJPATH+"/bin:" + $PONYO_ROOT + "/bin"
 
-PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin:" + $ACMEPATH
-LANG   = "en_US.UTF-8"
-SHELL  = $HOME + "/projects/go-workspace/bin/nash"
+LANG = "en_US.UTF-8"
+SHELL = $HOME+"/projects/go-workspace/bin/nash"
+
+IFS = ("\n")
 
 setenv SHELL
 setenv LANG
@@ -20,4 +26,6 @@ setenv GOPATH
 setenv GOROOT
 setenv PATH
 setenv ACMEPATH
-
+setenv SMLNJPATH
+setenv MLTONPATH
+setenv PONYO_ROOT
