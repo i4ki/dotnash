@@ -1,14 +1,16 @@
 # Setup environment variables
 
-GOVERSION = "go1.5.3"
-PLAN9     = $HOME + "/projects/plan9/plan9port"
-GOPATH    = $HOME + "/.gvm/pkgsets/" + $GOVERSION + "/global"
-GOROOT    = $HOME + "/.gvm/gos/" + $GOVERSION
-LBIN      = $HOME + "/bin"
-FZFPATH   = $HOME + "/.fzf"
-UE4PATH   = $HOME + "/unreal-engine/Engine/Binaries/Linux"
-MLTONPATH = $HOME + "/projects/personal/mlton"
-SMLNJPATH = $HOME + "/projects/personal/smlnj"
+GOVERSION     = "go1.5.3"
+PLAN9         = $HOME + "/projects/plan9/plan9port"
+GOPATH        = $HOME + "/.gvm/pkgsets/" + $GOVERSION + "/global"
+GOROOT        = $HOME + "/.gvm/gos/" + $GOVERSION
+LBIN          = $HOME + "/bin"
+FZFPATH       = $HOME + "/.fzf"
+UE4PATH       = $HOME + "/unreal-engine/Engine/Binaries/Linux"
+MLTONPATH     = $HOME + "/projects/personal/mlton"
+SMLNJPATH     = $HOME + "/projects/personal/smlnj"
+SMACKAGEPATH  = $HOME + "/projects/3rd/smackage"
+SMACKAGE_HOME = $HOME + "/.smackage"
 
 # haxe config
 HAXE_HOME     = $HOME + "/projects/3rd/haxe"
@@ -17,7 +19,7 @@ NEKOPATH      = "/usr/bin/neko"
 
 DPATH   = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
 
-PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin:" + $HAXE_HOME + ":" + $UE4PATH + ":" + $MLTONPATH + "/install/usr/bin:" + $SMLNJPATH + "/bin"
+PATH   = $DPATH + ":" + $PLAN9 + "/bin:" + $LBIN + ":" + $GOROOT + "/bin:" + $GOPATH + "/bin:" + $FZFPATH + "/bin:" + $HAXE_HOME + ":" + $UE4PATH + ":" + $MLTONPATH + "/install/usr/bin:" + $SMLNJPATH + "/bin:" + $SMACKAGEPATH + "/bin:" + $SMACKAGE_HOME + "/bin"
 
 LANG   = "en_US.UTF-8"
 SHELL  = $GOPATH + "/bin/nash"
@@ -38,3 +40,5 @@ setenv UE4PATH
 # sml
 setenv SMLNJPATH
 setenv MLTONPATH
+setenv SMACKAGEPATH
+setenv SMACKAGE_HOME

@@ -1,5 +1,7 @@
 # Git aliases
 
+IFS = ()
+
 fn gitbranch() {
         branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
         return $branch
