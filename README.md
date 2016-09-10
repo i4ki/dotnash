@@ -21,3 +21,5 @@ Checking connectivity... done.
 ```
 
 If you want this nash configuration then first fork this project and modify the file `conf/env` to export the required environment variables of your setup.
+
+[![asciicast](https://asciinema.org/a/93iwx8zuw4ccfl84nhcb5ae0i.png)](https://asciinema.org/a/93iwx8zuw4ccfl84nhcb5ae0i)
