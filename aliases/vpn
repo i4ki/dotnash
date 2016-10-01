@@ -1,0 +1,7 @@
+fn vpn(subcommand) {
+    sudo systemctl $subcommand openvpn@client.service
+}
+
+# FIXME
+# bindfn vpnstart vpn("start")
+# bindfn vpnstop vpn("stop")

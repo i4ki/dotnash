@@ -5,20 +5,11 @@ fn gitbranch() {
         return $branch
 }
 
-fn gpull() {
-        branch <= gitbranch()
-        git pull origin $branch
-        refreshPrompt()
-}
-
-bindfn gpull gpull
-
 # gcheck is a helper for easy checkouts
 # If executed without passing a branch it will prompt for a list
 # of existing branches for checkout.
 # if executed passing a non-existent branch, then it will create the
-# branch,
-# otherwise it will only checkout to given branch.
+# branch, otherwise it will only checkout to given branch.
 fn gcheck(branch) {
         if $branch == "" {
                 branch <= git branch | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
@@ -40,16 +31,12 @@ fn gcheck(branch) {
         }
 
         refreshPrompt()
-
         return $branch
 }
 
-bindfn gcheck gcheck
-
-fn gpush() {
-     branch <= gitbranch()
-     git push origin $branch
-     refreshPrompt()
+fn gclean() {
+        git remote prune origin
 }
 
-bindfn gpush gpush
+bindfn gcheck gcheck
+bindfn gclean gclean
