@@ -7,11 +7,12 @@ PROMPT = $DEFPROMPT
 setenv PROMPT
 
 fn refreshPrompt() {
+        currentdir <= pwd
+        dirname <= basename $currentdir | tr -d '\n'
+        PROMPT = $dirname + " " + $DEFPROMPT
+	#PROMPT = $DEFPROMPT
 	-test -d ./.git
-
-	if $status != "0" {
-		PROMPT = $DEFPROMPT
-	} else {
+	if $status == "0" {
                 IFS = ""
 		branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
 		PROMPT = $NASH_GREEN+"git:("+$branch+$NASH_RESET+")"+$DEFPROMPT
