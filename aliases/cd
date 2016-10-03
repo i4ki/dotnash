@@ -8,7 +8,7 @@ setenv PROMPT
 
 fn getDir() {
         currentdir <= pwd
-        dirname <= basename $currentdir | tr -d '\n'
+        dirname <= basename $currentdir | tr -d "\n"
         return $dirname
 }
 

@@ -3,7 +3,7 @@ fn tox() {
 }
 
 fn fromx() {
-        'xclip -selection clipboard -o'
+        xclip -selection clipboard -o
 }
 
 #Update arch
