@@ -1,0 +1,34 @@
+
+
+# Delete all containers
+fn dockercleanc() {
+        printf "\n>>> Deleting stopped containers\n\n"
+        containers <= docker ps -a -q
+        docker rm $containers
+}
+
+# Delete all images.
+fn dockercleani() {
+        printf "\n>>> Deleting untagged images\n\n"
+        images <= docker images -q
+        docker rmi -f $images
+}
+
+## Delete all stopped containers and untagged images.
+fn dockerclean() {
+    dockercleanc()
+    dockercleani()
+}
+
+## Delete orphaned volumes
+fn dockercleanv() {
+        printf "\n>>> Deleting orphaned volumes.\n\n"
+        # FIXME
+        #volumes <= docker volume ls -qf dangling=true
+        docker volume rm $volumes
+}
+
+bindfn dockercleanc dockercleanc
+bindfn dockercleani dockercleani
+bindfn dockercleanv dockercleanv
+bindfn dockerclean dockerclean

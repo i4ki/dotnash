@@ -1,0 +1,38 @@
+fn tox() {
+        xclip -selection clipboard
+}
+
+fn fromx() {
+        xclip -selection clipboard -o
+}
+
+#Update arch
+fn archupdate() {
+        sudo pacman -Syu
+}
+
+#Instant http server
+fn servehttp() {
+        python -m http.server
+}
+
+#Generate password
+fn genpassword() {
+        openssl rand -base64 32
+}
+
+fn poff() {
+        sudo systemctl poweroff
+}
+
+fn io() {
+        iostat -xmdz 1
+}
+
+bindfn tox tox
+bindfn fromx fromx
+bindfn archupdate archup
+bindfn servehttp servehttp
+bindfn genpassword genpass
+bindfn poff poff
+bindfn io io
