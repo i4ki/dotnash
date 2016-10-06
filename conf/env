@@ -1,6 +1,6 @@
 # Setup environment variables
 
-GOVERSION     = "go1.5.3"
+GOVERSION     = "go1.7"
 PLAN9         = $HOME + "/projects/plan9/plan9port"
 GOPATH        = $HOME + "/.gvm/pkgsets/" + $GOVERSION + "/global"
 GOROOT        = $HOME + "/.gvm/gos/" + $GOVERSION
