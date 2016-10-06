@@ -1,4 +1,6 @@
 #!/usr/bin/env nash
+
+import "nashcomplete/all"
 import "conf/deps"
 import "nashlib/all"
 import "conf/env"

@@ -1,12 +1,15 @@
-NASH_PATH=$(HOME)/.nash
+NASHPATH=$(HOME)/.nash
+NASHLIBS=$(NASHPATH)/lib
 
 install:
-	rm -rf $(NASH_PATH)
-	mkdir -p $(NASH_PATH)
-	cp -r init $(NASH_PATH)
-	cp -r conf $(NASH_PATH)
-	cp -r common $(NASH_PATH)
-	cp -r aliases $(NASH_PATH)
+	rm -rf $(NASHPATH)
+	mkdir -p $(NASHPATH)
+	cp -r init $(NASHPATH)
+	cp -r conf $(NASHPATH)
+	cp -r common $(NASHPATH)
+	cp -r aliases $(NASHPATH)
+	git clone git@github.com:katcipis/nashcomplete.git $(NASHLIBS)/nashcomplete
 
 bootstrap:
 	go get github.com/katcipis/nash/cmd/nash
+
