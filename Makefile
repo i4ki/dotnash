@@ -9,7 +9,7 @@ install:
 	cp -r conf $(NASHPATH)
 	cp -r common $(NASHPATH)
 	cp -r aliases $(NASHPATH)
-	git clone git@github.com:katcipis/nashcomplete.git $(NASHLIBS)/nashcomplete
+	git clone git@github.com:NeowayLabs/nashcomplete.git $(NASHLIBS)/nashcomplete
 
 bootstrap:
 	go get github.com/katcipis/nash/cmd/nash
