@@ -7,6 +7,7 @@ PROMPT = $DEFPROMPT
 setenv PROMPT
 
 fn getDir() {
+        IFS = ()
         currentdir <= pwd
         dirname <= basename $currentdir | tr -d "\n"
         return $dirname
