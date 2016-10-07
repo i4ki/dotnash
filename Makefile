@@ -2,6 +2,7 @@ NASHPATH=$(HOME)/.nash
 NASHLIBS=$(NASHPATH)/lib
 
 install:
+	go get github.com/NeowayLabs/nash/cmd/nash
 	rm -rf $(NASHPATH)
 	mkdir -p $(NASHPATH)
 	cp -r init $(NASHPATH)
