@@ -1,31 +1,39 @@
 # Setup environment variables
-PLAN9      = "/usr/local/plan9"
-ACMEPATH   = $HOME+"/acme"
-GOPATH     = $HOME+"/projects/go-workspace"
-GOROOT     = $HOME+"/projects/personal/go"
-LBIN       = $HOME+"/bin"
-FZFPATH    = $HOME+"/.fzf"
-SMLNJPATH  = $HOME+"/projects/personal/smlnj"
-MLTONPATH  = $HOME+"/projects/personal/mlton"
+PLAN9            = "/usr/local/plan9"
+ACMEPATH         = $HOME+"/acme"
+GOPATH           = $HOME+"/projects/go-workspace"
+GOROOT           = $HOME+"/projects/personal/go"
+LBIN             = $HOME+"/bin"
+FZFPATH          = $HOME+"/.fzf"
+EC2_AMITOOL_HOME = "/usr/local/ec2/ec2-ami-tools-1.5.7"
+LANG             = "en_US.UTF-8"
+SHELL            = $HOME+"/projects/go-workspace/bin/nash"
+IFS              = ("\n")
+PATH             = ""
+path = (
+	"/bin"
+	"/sbin"
+	"/usr/bin"
+	"/usr/sbin"
+	"/usr/local/bin"
+	$HOME+"/bin"
+	$PLAN9+"/bin"
+	$GOROOT+"/bin"
+	$GOPATH+"/bin"
+	$FZFPATH+"/bin"
+	$ACMEPATH
+	$EC2_AMITOOL_HOME+"/bin"
+)
 
-# name required by PONYO
-PONYO_ROOT = $HOME + "/projects/3rdparty/ponyo"
+for p in $path {
+	PATH = $PATH+":"+$p
+}
 
-DPATH = "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
-PATH = $DPATH+":"+$PLAN9+"/bin:"+$LBIN+":"+$GOROOT+"/bin:"+$GOPATH+"/bin:"+$FZFPATH+"/bin:"+$ACMEPATH+":"+$MLTONPATH+"/bin:"+$SMLNJPATH+"/bin:" + $PONYO_ROOT + "/bin"
-
-LANG = "en_US.UTF-8"
-SHELL = $HOME+"/projects/go-workspace/bin/nash"
-
-IFS = ("\n")
-
+setenv PATH
 setenv SHELL
 setenv LANG
 setenv PLAN9
 setenv GOPATH
 setenv GOROOT
-setenv PATH
 setenv ACMEPATH
-setenv SMLNJPATH
-setenv MLTONPATH
-setenv PONYO_ROOT
+setenv EC2_AMITOOL_HOME
