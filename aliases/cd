@@ -16,7 +16,7 @@ fn getDir() {
 fn refreshPrompt() {
         dirname <= getDir()
         PROMPT = "(" + $dirname + ")" + $DEFPROMPT
-	-test -d ./.git
+        -git rev-parse > [2=]
 	if $status == "0" {
                 IFS = ""
 		branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
@@ -29,12 +29,8 @@ fn refreshPrompt() {
 # cd overrides built-in cd
 # Add the current branch before prompt (if current directory is a git repo)
 fn cd(path) {
-	if $path == "" {
-		path = $HOME
-	} else if $path == "~" {
-		path = $HOME
-	}
-
+        IFS = ()
+        path <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
         chdir($path)
 	refreshPrompt()
 }
