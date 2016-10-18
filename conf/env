@@ -2,7 +2,7 @@
 GOPATH = $HOME + "/workspace/go"
 GOROOT = $HOME + "/go"
 PATH   = $PATH + ":" + $GOPATH + "/bin:" + $GOROOT + "/bin"
-SHELL  = "nash"
+SHELL  = $GOPATH+"/bin/nash"
 IFS    = ("\n")
 
 setenv GOPATH
