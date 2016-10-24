@@ -17,13 +17,13 @@ fn refreshPrompt() {
         dirname <= getDir()
         PROMPT = "(" + $dirname + ")" + $DEFPROMPT
         -git rev-parse > [2=]
-	if $status == "0" {
+        if $status == "0" {
                 IFS = ""
-		branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
-		PROMPT = "(" + $dirname + "(git("+$NASH_GREEN+$branch+$NASH_RESET+")))"+$DEFPROMPT
-	}
+                branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
+                PROMPT = "(" + $dirname + "(git "+$NASH_GREEN+$branch+$NASH_RESET+"))"+$DEFPROMPT
+        }
 
-	setenv PROMPT
+        setenv PROMPT
 }
 
 # cd overrides built-in cd
@@ -32,7 +32,7 @@ fn cd(path) {
         IFS = ()
         path <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
         chdir($path)
-	refreshPrompt()
+        refreshPrompt()
 }
 
 bindfn cd cd

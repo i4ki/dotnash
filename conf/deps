@@ -11,7 +11,6 @@ fn getnashlib() {
                 -mkdir -p $NASHPATH + "/lib"
                 cd $NASHPATH + "/lib"
                 git clone https://github.com/NeowayLabs/nashlib.git
-                cd $OLDPWD
         }
 }
 
@@ -24,7 +23,6 @@ fn getfzf() {
                  cd $HOME
                  git clone --depth 1 https://github.com/junegunn/fzf.git .fzf
                  ./.fzf/install --all >[1=] >[2=]
-                 cd $OLDPWD
         }
 }
 
