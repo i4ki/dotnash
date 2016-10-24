@@ -28,17 +28,54 @@ fn refreshPrompt() {
 	setenv PROMPT
 }
 
-# cd overrides built-in cd
-# Add the current branch before prompt (if current directory is a git repo)
-fn cd(path) {
-	if $path == "" {
-		path = $HOME
-	} else if $path == "~" {
-		path = $HOME
-	}
-
+fn __docd(path) {
 	chdir($path)
 	refreshPrompt()
+}
+
+# cd overrides built-in cd
+# Add the current branch before prompt (if current directory is a git
+# repo)
+fn cd(path) {
+	IFS = ()
+
+	if $path == "" {
+		__docd($HOME)
+
+		return
+	}
+
+	echo $path | -grep "^/"
+
+	if $status != "0" {
+		pwd <= pwd | tr -d "\n"
+
+		newpath = $pwd+"/"+$path
+
+		-test -d $newpath
+
+		if $status == "0" {
+			__docd($newpath)
+
+			return
+		}
+
+		for prefix in $CDPATH {
+			newpath = $prefix+"/"+$path
+
+			-test -d $newpath
+
+			if $status == "0" {
+				__docd($newpath)
+
+				return
+			}
+		}
+	}
+
+	path <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
+
+	__docd($path)
 }
 
 bindfn cd cd

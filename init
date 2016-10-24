@@ -4,7 +4,7 @@ import "nashlib/all"
 import "conf/env"
 import "aliases/all"
 
-import "nashcomplete/all"
+import conf/complete
 
 # only to apply current PROMPT using new cd alias
 refreshPrompt()

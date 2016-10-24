@@ -1,161 +1,167 @@
 # Some golang helpers
 
 goversions = (
-   go1
-   go1.0.1
-   go1.0.2
-   go1.0.3
-   go1.1
-   go1.1.1
-   go1.1.2
-   go1.1rc2
-   go1.1rc3
-   go1.2
-   go1.2.1
-   go1.2.2
-   go1.2rc2
-   go1.2rc3
-   go1.2rc4
-   go1.2rc5
-   go1.3
-   go1.3.1
-   go1.3.2
-   go1.3.3
-   go1.3beta1
-   go1.3beta2
-   go1.3rc1
-   go1.3rc2
-   go1.4
-   go1.4.1
-   go1.4.2
-   go1.4.3
-   go1.4beta1
-   go1.4rc1
-   go1.4rc2
-   go1.5
-   go1.5.1
-   go1.5.2
-   go1.5.3
-   go1.5.4
-   go1.5beta1
-   go1.5beta2
-   go1.5beta3
-   go1.5rc1
-   go1.6
-   go1.6.1
-   go1.6.2
-   go1.6.3
-   go1.6beta1
-   go1.6beta2
-   go1.6rc1
-   go1.6rc2
-   go1.7
-   go1.7beta1
-   go1.7beta2
-   go1.7rc1
-   go1.7rc2
-   go1.7rc3
-   go1.7rc4
-   go1.7rc5
-   go1.7rc6
-   release.r56
-   release.r57
-   release.r57.1
-   release.r57.2
-   release.r58
-   release.r58.1
-   release.r58.2
-   release.r59
-   release.r60
-   release.r60.1
-   release.r60.2
-   release.r60.3
+	go1
+	go1.0.1
+	go1.0.2
+	go1.0.3
+	go1.1
+	go1.1.1
+	go1.1.2
+	go1.1rc2
+	go1.1rc3
+	go1.2
+	go1.2.1
+	go1.2.2
+	go1.2rc2
+	go1.2rc3
+	go1.2rc4
+	go1.2rc5
+	go1.3
+	go1.3.1
+	go1.3.2
+	go1.3.3
+	go1.3beta1
+	go1.3beta2
+	go1.3rc1
+	go1.3rc2
+	go1.4
+	go1.4.1
+	go1.4.2
+	go1.4.3
+	go1.4beta1
+	go1.4rc1
+	go1.4rc2
+	go1.5
+	go1.5.1
+	go1.5.2
+	go1.5.3
+	go1.5.4
+	go1.5beta1
+	go1.5beta2
+	go1.5beta3
+	go1.5rc1
+	go1.6
+	go1.6.1
+	go1.6.2
+	go1.6.3
+	go1.6beta1
+	go1.6beta2
+	go1.6rc1
+	go1.6rc2
+	go1.7
+	go1.7beta1
+	go1.7beta2
+	go1.7rc1
+	go1.7rc2
+	go1.7rc3
+	go1.7rc4
+	go1.7rc5
+	go1.7rc6
+	release.r56
+	release.r57
+	release.r57.1
+	release.r57.2
+	release.r58
+	release.r58.1
+	release.r58.2
+	release.r59
+	release.r60
+	release.r60.1
+	release.r60.2
+	release.r60.3
 )
 
-GOVERSIONSPATH = $HOME + "/.gvm/gos"
-GOPKGSETPATH   = $HOME + "/.gvm/pkgsets"
-IFS = ("\n")
+GOVERSIONSPATH = $HOME+"/.gvm/gos"
+GOPKGSETPATH   = $HOME+"/.gvm/pkgsets"
+IFS            = ("\n")
 
 # syntax sugar to cd into go project
 fn gocd(path) {
-        cd $GOPATH + "/src/" + $path
-        refreshPrompt()
+	cd $GOPATH+"/src/"+$path
 }
 
 fn gomk(path) {
-        mkpath = $GOPATH + "/src/" + $path
-        -test -d $mkpath
+	mkpath = $GOPATH+"/src/"+$path
 
-        if $status != "0" {
-                mkdir -p $mkpath
+	-test -d $mkpath
 
-                echo "Directory created: " + $mkpath
-        }
+	if $status != "0" {
+		mkdir -p $mkpath
+		echo "Directory created: "+$mkpath
+	}
 }
 
 fn isgoroot(path) {
-        for ver in $goversions {
-                testpath = $GOVERSIONSPATH + "/" + $ver + "/bin"
+	for ver in $goversions {
+		testpath = $GOVERSIONSPATH+"/"+$ver+"/bin"
 
-                if $testpath == $pat {
-                        return "0"
-                }
-        }
+		if $testpath == $pat {
+			return "0"
+		}
+	}
 
-        return "1"
+	return "1"
 }
 
 fn goupdatepath(goroot) {
-        IFS = ("\n")
-        pathlist <= echo $PATH | tr ":" "\n"
-        newpath = ""
-        inserted = "0"
+	IFS = ("\n")
 
-        for path in $pathlist {
-                isgoroot <= isgoroot($path)
+	pathlist <= echo $PATH | tr ":" "\n"
 
-                if $isgoroot != "0" {
-                        newpath = $newpath + $path + ":"
-                } else {
-                        inserted = "1"
-                        newpath = $newpath + $goroot + "/bin:"
-                }
+	newpath  = ""
+	inserted = "0"
 
-                echo "Path " + $path + " is " + $isgoroot
-        }
+	for path in $pathlist {
+		isgoroot <= isgoroot($path)
 
-        if $inserted == "0" {
-                newpath = $newpath + $goroot + "/bin:"
-        }
+		if $isgoroot != "0" {
+			newpath = $newpath+$path+":"
+		} else {
+			inserted = "1"
+			newpath  = $newpath+$goroot+"/bin:"
+		}
 
-        PATH = $newpath
-        setenv PATH
+		echo "Path "+$path+" is "+$isgoroot
+	}
+
+	if $inserted == "0" {
+		newpath = $newpath+$goroot+"/bin:"
+	}
+
+	PATH = $newpath
+
+	setenv PATH
 }
 
 fn gouse(version) {
-        goroot = $GOVERSIONSPATH + "/go" + $version
-        -test -d $goroot
+	goroot = $GOVERSIONSPATH+"/go"+$version
 
-        if $status != "0" {
-                echo "No go" + $version + " installed at " + $goroot
-                return "1"
-        }
+	-test -d $goroot
 
-        GOROOT = $goroot
-        setenv GOROOT
+	if $status != "0" {
+		echo "No go"+$version+" installed at "+$goroot
 
-        gopath = $GOPKGSETPATH + "/go" + $version + "/global"
+		return "1"
+	}
 
-        -test -d $gopath
+	GOROOT = $goroot
 
-        if $status != "0" {
-                mkdir -p $gopath
-        }
+	setenv GOROOT
 
-        GOPATH = $gopath
-        setenv GOPATH
+	gopath = $GOPKGSETPATH+"/go"+$version+"/global"
 
-        goupdatepath($goroot)
+	-test -d $gopath
+
+	if $status != "0" {
+		mkdir -p $gopath
+	}
+
+	GOPATH = $gopath
+
+	setenv GOPATH
+
+	goupdatepath($goroot)
 }
 
 bindfn gocd gocd
