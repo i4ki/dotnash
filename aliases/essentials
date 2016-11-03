@@ -8,7 +8,7 @@ fn fromx() {
 
 #Update arch
 fn archupdate() {
-        sudo pacman -Syu
+        sudo pacman -Syyu
 }
 
 #Instant http server
@@ -31,8 +31,8 @@ fn io() {
 
 bindfn tox tox
 bindfn fromx fromx
-bindfn archupdate archup
+bindfn archupdate archupdate
 bindfn servehttp servehttp
-bindfn genpassword genpass
+bindfn genpassword genpassword
 bindfn poff poff
 bindfn io io
