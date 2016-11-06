@@ -28,6 +28,7 @@ fn cd(path) {
 
        if $path == "" {
                chdir($HOME)
+               refreshPrompt()
                return
         }
 
