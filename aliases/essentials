@@ -11,12 +11,10 @@ fn archupdate() {
         sudo pacman -Syu
 }
 
-#Instant http server
 fn servehttp() {
         python -m http.server
 }
 
-#Generate password
 fn genpassword() {
         openssl rand -base64 32
 }
@@ -29,10 +27,15 @@ fn io() {
         iostat -xmdz 1
 }
 
+fn netstart() {
+        sudo systemctl start dhcpcd@enp1s0
+}
+
 bindfn tox tox
 bindfn fromx fromx
-bindfn archupdate archup
+bindfn archupdate archupdate
 bindfn servehttp servehttp
-bindfn genpassword genpass
+bindfn genpassword genpassword
+bindfn netstart netstart
 bindfn poff poff
 bindfn io io
