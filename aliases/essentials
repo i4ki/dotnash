@@ -6,9 +6,8 @@ fn fromx() {
         xclip -selection clipboard -o
 }
 
-#Update arch
 fn archupdate() {
-        sudo pacman -Syu
+        sudo pacman -Syyu
 }
 
 fn servehttp() {
