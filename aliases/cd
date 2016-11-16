@@ -1,51 +1,19 @@
-# cd alias add the branch name to prompt
-
-# PROMPT is a special variable used by nash command line to
-# setup your prompt.
-PROMPTSYM = "λ> "
-DEFPROMPT = $NASH_RED+$PROMPTSYM+$NASH_RESET
-PROMPT    = $DEFPROMPT
-
-setenv PROMPT
-
-fn refreshPrompt() {
-	PROMPT = $DEFPROMPT
-	IFS    = ""
-
-	-test -d ./.git
-
-	if $status == "0" {
-		branch <= -git rev-parse --abbrev-ref HEAD >[2=]
-
-		if $status == "0" {
-			# workaround nash issue #96
-			branch <= echo -n $branch | xargs echo -n
-
-			PROMPT = $NASH_GREEN+"git:("+$branch+$NASH_RESET+")"+$DEFPROMPT
-		}
-	}
-
-	setenv PROMPT
-}
+# cd alias
 
 fn __docd(path) {
 	chdir($path)
-	refreshPrompt()
 }
 
 # cd overrides built-in cd
-# Add the current branch before prompt (if current directory is a git
-# repo)
+# looks for directories in CDPATH variable
 fn cd(path) {
-	IFS = ()
-
 	if $path == "" {
 		__docd($HOME)
 
 		return
 	}
 
-	echo $path | -grep "^/"
+	echo $path | -grep "^/" >[1=]
 
 	if $status != "0" {
 		pwd <= pwd | tr -d "\n"

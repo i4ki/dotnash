@@ -1,31 +1,35 @@
 # Download any required dependencies
 
 fn getnashlib() {
-        -test -d $NASHPATH + "/lib/nashlib"
+	-test -d $NASHPATH+"/lib/nashlib"
 
-        if $status != "0" {
-                # After install nashlib, you can use color variables instead of
-                # adding explicit ANSI escape sequences...
-                echo "\033[31m» nashlib not installed\033[0m"
-                echo "\033[32m» Trying to download dependencies...\033[0m"
-                -mkdir -p $NASHPATH + "/lib"
-                cd $NASHPATH + "/lib"
-                git clone https://github.com/NeowayLabs/nashlib.git
-                cd
-        }
+	if $status != "0" {
+		# After install nashlib, you can use color variables instead of
+		# adding explicit ANSI escape sequences...
+		echo "[31m» nashlib not installed[0m"
+		echo "[32m» Trying to download dependencies...[0m"
+		-mkdir -p $NASHPATH+"/lib"
+
+		chdir($NASHPATH+"/lib")
+
+		git clone https://github.com/NeowayLabs/nashlib.git
+
+		chdir($HOME)
+	}
 }
 
 fn getfzf() {
-        -test -d $HOME + "/.fzf"
+	-test -d $HOME+"/.fzf"
 
-        if $status != "0" {
-                 echo "fzf fuzzy finder not installed."
-                 echo "Installing fzf..."
-                 cd $HOME
-                 git clone --depth 1 https://github.com/junegunn/fzf.git .fzf
-                 ./.fzf/install --all >[1=] >[2=]
-                 cd
-        }
+	if $status != "0" {
+		echo "fzf fuzzy finder not installed."
+		echo "Installing fzf..."
+
+		chdir($HOME)
+
+		git clone --depth 1 https://github.com/junegunn/fzf.git .fzf
+		./.fzf/install --all >[1=] >[2=]
+	}
 }
 
 getnashlib()

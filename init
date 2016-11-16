@@ -1,10 +1,8 @@
 #!/usr/bin/env nash
+
 import "conf/deps"
 import "nashlib/all"
 import "conf/env"
 import "aliases/all"
-
-import conf/complete
-
-# only to apply current PROMPT using new cd alias
-refreshPrompt()
+import "conf/complete"
+import "conf/prompt"

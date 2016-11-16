@@ -1,16 +1,15 @@
 # Git aliases
 
-IFS = ()
-
 fn gitbranch() {
-        branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
-        return $branch
+	branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
+
+	return $branch
 }
 
 fn gpull() {
-        branch <= gitbranch()
-        git pull origin $branch
-        refreshPrompt()
+	branch <= gitbranch()
+
+	git pull origin $branch
 }
 
 bindfn gpull gpull
@@ -22,36 +21,40 @@ bindfn gpull gpull
 # branch,
 # otherwise it will only checkout to given branch.
 fn gcheck(branch) {
-        if $branch == "" {
-                branch <= git branch | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
-                git checkout $branch
-        } else {
-                IFS = ("\n")
-                branchs <= git branch | sed "s/^[* \\t]*//g"
+	if $branch == "" {
+		branch <= (
+			git branch |
+			sed "s/^[* \\t]*//g" |
+			fzf --header "Select the branch: " |
+			xargs echo -n
+		)
 
-                for b in $branchs {
-                        if $b == $branch {
-                                git checkout $branch
+		git checkout $branch
+	} else {
+		branchs <= git branch | sed "s/^[* \\t]*//g"
+		branchs <= split($branchs, "\n")
 
-                                # break isn't implemented yet
-                                return $branch
-                        }
-                }
+		for b in $branchs {
+			if $b == $branch {
+				git checkout $branch
 
-                git checkout -b $branch
-        }
+				# break isn't implemented yet
+				return $branch
+			}
+		}
 
-        refreshPrompt()
+		git checkout -b $branch
+	}
 
-        return $branch
+	return $branch
 }
 
 bindfn gcheck gcheck
 
 fn gpush() {
-     branch <= gitbranch()
-     git push origin $branch
-     refreshPrompt()
+	branch <= gitbranch()
+
+	git push origin $branch
 }
 
 bindfn gpush gpush
