@@ -20,6 +20,7 @@ paths = (
 	$GOPATH+"/bin"
 	$PLAN9+"/bin"
 	$FZFPATH+"/bin"
+	$LBIN
 )
 
 for p in $paths {
