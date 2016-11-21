@@ -26,6 +26,10 @@ fn io() {
         iostat -xmdz 1
 }
 
+fn udplisten(port) {
+    nc -v -l -u -p $port
+}
+
 fn netstart() {
         sudo systemctl start dhcpcd@enp1s0
 }
