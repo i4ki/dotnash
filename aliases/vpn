@@ -1,5 +1,5 @@
 fn vpn(subcommand) {
-        sudo systemctl $subcommand openvpn@client.service
+        sudo systemctl $subcommand openvpn-client@client.service
 }
 
 fn vpnstart() {
