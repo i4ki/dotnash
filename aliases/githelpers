@@ -15,8 +15,8 @@ fn gcheck(branch) {
                 branch <= git branch | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
                 git checkout $branch
         } else {
-                IFS = ("\n")
                 branchs <= git branch | sed "s/^[* \\t]*//g"
+                # TODO:IFS: split branches by \n
 
                 for b in $branchs {
                         if $b == $branch {
