@@ -3,8 +3,7 @@
 # setup your prompt.
 PROMPTSYM = "λ> "
 DEFPROMPT = $NASH_RED+$PROMPTSYM+$NASH_RESET
-PROMPT = $DEFPROMPT
-setenv PROMPT
+setenv PROMPT = $DEFPROMPT
 
 fn getDir() {
         currentdir <= pwd
@@ -20,7 +19,6 @@ fn refreshPrompt() {
                 branch <= git rev-parse --abbrev-ref HEAD | xargs echo -n
                 PROMPT = "(" + $dirname + "(git "+$NASH_GREEN+$branch+$NASH_RESET+"))"+$DEFPROMPT
         }
-
         setenv PROMPT
 }
 

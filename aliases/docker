@@ -3,15 +3,21 @@
 # Delete all containers
 fn dockercleanc() {
         printf "\n>>> Deleting stopped containers\n\n"
-        containers <= docker ps -a -q
-        docker rm -f $containers
+        rawcontainers <= docker ps -a -q
+        containers <= split($rawcontainers, "\n")
+        for container in $containers {
+            docker rm -f $container
+        }
 }
 
 # Delete all images.
 fn dockercleani() {
         printf "\n>>> Deleting untagged images\n\n"
-        images <= docker images -q
-        docker rmi -f $images
+        rawimages <= docker images -q
+        images <= split($rawimages, "\n")
+        for img in $images {
+            docker rmi -f $img
+        }
 }
 
 ## Delete all stopped containers and untagged images.
