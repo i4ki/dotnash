@@ -11,6 +11,10 @@ fn getDir() {
         return $dirname
 }
 
+fn nash_repl_after(arg1, arg2) {
+        refreshPrompt()
+}
+
 fn refreshPrompt() {
         dirname <= getDir()
         PROMPT = "(" + $dirname + ")" + $DEFPROMPT
@@ -27,7 +31,6 @@ fn refreshPrompt() {
 fn cd(path) {
         path <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
         chdir($path)
-        refreshPrompt()
 }
 
 bindfn cd cd
