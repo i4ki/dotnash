@@ -1,4 +1,3 @@
-NASHPATH=$(HOME)/.nash
 NASHLIBS=$(NASHPATH)/lib
 
 install:
