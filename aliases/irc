@@ -1,0 +1,19 @@
+freenode = "irc.freenode.net"
+ircdir = $HOME + "/irc"
+
+fn iiconnect() {
+        ii -i $ircdir -n katcipis -s $freenode -p 6667
+}
+
+fn iijoin(channel) {
+        echo "/j #" + $channel > $ircdir + "/" + $freenode + "/in"
+}
+
+fn iiread(channel) {
+        outfile = $ircdir + "/" + $freenode + "/#" + $channel + "/out"
+        tail -f $outfile
+}
+
+bindfn iiconnect iiconnect
+bindfn iijoin iijoin
+bindfn iiread iiread
