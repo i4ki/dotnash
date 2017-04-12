@@ -1,8 +1,9 @@
 # Setup environment variables
-GOPATH = $HOME + "/workspace/go"
-GOROOT = $HOME + "/go"
-PATH   = $PATH + ":" + $GOPATH + "/bin:" + $GOROOT + "/bin"
-SHELL  = $GOPATH+"/bin/nash"
+GOPATH     = $HOME + "/workspace/go"
+GOROOT     = $HOME + "/go"
+PYTHONROOT = $HOME + "/.local/bin"
+PATH       = $PATH + ":" + $GOPATH + "/bin:" + $GOROOT + "/bin:" + $PYTHONROOT
+SHELL      = $GOPATH+"/bin/nash"
 
 setenv GOPATH
 setenv GOROOT
