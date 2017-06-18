@@ -1,34 +1,42 @@
 # Setup environment variables
-
-GOVERSION        = "go1.7"
-PLAN9            = $HOME+"/projects/plan9/plan9port"
-GOPATH           = $HOME+"/.gvm/pkgsets/"+$GOVERSION+"/global"
-LBIN             = $HOME+"/bin"
-FZFPATH          = $HOME+"/.fzf"
-GOROOT           = $HOME+"/.gvm/gos/"+$GOVERSION
-GOROOT_BOOTSTRAP = $HOME+"/.gvm/gos/go1.5.3"
-CDPATH           = ($HOME $GOPATH+"/src")
-LANG             = "en_US.UTF-8"
-PATH             = ""
-paths = (
+var goversion = "go1.8"
+var plan9 = $HOME+"/projects/plan9/plan9port"
+var gopath = $HOME+"/.gvm/pkgsets/"+$goversion+"/global"
+var lbin = $HOME+"/bin"
+var fzfpath = $HOME+"/.fzf"
+var goroot = $HOME+"/.gvm/gos/"+$goversion
+var goroot_bootstrap = $HOME+"/.gvm/gos/go1.5.3"
+var cdpath = ($HOME $gopath+"/src")
+var lang = "en_US.UTF-8"
+var acbuildpath = $gopath+"/src/github.com/containers/acbuild/bin"
+var rktpath = $HOME+"/projects/3rd/rkt"
+var path = ""
+var paths = (
+	$gopath+"/bin"
+	$goroot+"/bin"
 	"/bin"
 	"/sbin"
 	"/usr/bin"
 	"/usr/sbin"
 	"/usr/local/bin"
-	$GOROOT+"/bin"
-	$GOPATH+"/bin"
-	$PLAN9+"/bin"
-	$FZFPATH+"/bin"
-	$LBIN
+	$plan9+"/bin"
+	$fzfpath+"/bin"
+	$lbin
+	$acbuildpath
+	$rktpath
 )
 
 for p in $paths {
-	PATH = $PATH+":"+$p
+	if $PATH == "" {
+		path = $p
+	} else {
+		path = $PATH+":"+$p
+	}
 }
 
-setenv LANG
-setenv PLAN9
-setenv GOPATH
-setenv GOROOT_BOOTSTRAP
-setenv PATH
+setenv LANG = $lang
+setenv PLAN9 = $plan9
+setenv GOPATH = $gopath
+setenv GOROOT_BOOTSTRAP = $goroot_bootstrap
+setenv PATH = $path
+setenv ACBUILD_BIN_DIR = $acbuildpath

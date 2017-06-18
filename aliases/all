@@ -1,4 +1,3 @@
-
 # import all my aliases
 
 import "cd"
@@ -6,3 +5,8 @@ import "ls"
 import "gohelpers"
 import "githelpers"
 import "wifi"
+import "qgis"
+import "kbuild/kbuild"
+
+bindfn nashget nashget
+bindfn kbuild kbuild

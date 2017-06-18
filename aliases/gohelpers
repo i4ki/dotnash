@@ -6,9 +6,9 @@ fn gocd(path) {
 }
 
 fn gomk(path) {
-	mkpath = $GOPATH+"/src/"+$path
+	var mkpath = $GOPATH+"/src/"+$path
 
-	-test -d $mkpath
+	var _, status <= test -d $mkpath
 
 	if $status != "0" {
 		mkdir -p $mkpath

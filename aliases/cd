@@ -5,7 +5,9 @@ fn __docd(path) {
 }
 
 # cd overrides built-in cd
-# looks for directories in CDPATH variable
+# - empty $path goes to $HOME
+# - replaces ~ to value of $HOME
+# - looks for directories in CDPATH variable
 fn cd(path) {
 	if $path == "" {
 		__docd($HOME)
@@ -13,14 +15,14 @@ fn cd(path) {
 		return
 	}
 
-	echo $path | -grep "^/" >[1=]
+	var _, status <= echo $path | grep "^/"
 
 	if $status != "0" {
-		pwd <= pwd | tr -d "\n"
+		var pwd <= pwd
 
-		newpath = $pwd+"/"+$path
+		var newpath = $pwd+"/"+$path
 
-		-test -d $newpath
+		_, status <= test -d $newpath
 
 		if $status == "0" {
 			__docd($newpath)
@@ -31,7 +33,7 @@ fn cd(path) {
 		for prefix in $CDPATH {
 			newpath = $prefix+"/"+$path
 
-			-test -d $newpath
+			_, status <= test -d $newpath
 
 			if $status == "0" {
 				__docd($newpath)
@@ -41,7 +43,7 @@ fn cd(path) {
 		}
 	}
 
-	path <= echo -n $path | sed "s#^~#"+$HOME+"#g" | tr -d "\n"
+	path, _ <= echo -n $path | sed "s#^~#"+$HOME+"#g"
 
 	__docd($path)
 }

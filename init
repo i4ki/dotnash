@@ -1,8 +1,8 @@
 #!/usr/bin/env nash
 
+import "conf/env"
 import "conf/deps"
 import "nashlib/all"
-import "conf/env"
 import "aliases/all"
 import "conf/complete"
 import "conf/prompt"
