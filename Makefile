@@ -1,18 +1,13 @@
-NASHPATH=$(HOME)/nash
 NASHLIBS=$(NASHPATH)/lib
 
-clean:
-	rm -rf $(HOME)/.bashrc
-	rm -rf $(NASHPATH)/init
-	rm -rf $(NASHPATH)/conf
-	rm -rf $(NASHPATH)/common
-	rm -rf $(NASHPATH)/aliases
-	rm -rf $(NASHLIBS)/nashcomplete
-
 install: clean
-	cp -r bashrc $(HOME)/.bashrc
-	cp -r init $(NASHPATH)
-	cp -r conf $(NASHPATH)
-	cp -r common $(NASHPATH)
+	cp -r init.sh $(NASHPATH)
 	cp -r aliases $(NASHPATH)
 	git clone https://github.com/NeowayLabs/nashcomplete.git $(NASHLIBS)/nashcomplete
+	git clone https://github.com/NeowayLabs/nashlib.git $(NASHLIBS)/nashlib
+
+clean:
+	rm -rf $(NASHPATH)/init.sh
+	rm -rf $(NASHPATH)/aliases
+	rm -rf $(NASHLIBS)/nashcomplete
+	rm -rf $(NASHLIBS)/nashlib
