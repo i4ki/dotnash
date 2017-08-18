@@ -1,5 +1,3 @@
-# Some golang helpers
-
 fn golab(project) {
         cd $GOPATH + "/src/gitlab.neoway.com.br/datapirates/" + $project
         refreshPrompt()
