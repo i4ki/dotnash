@@ -1,6 +1,7 @@
 NASHLIBS=$(NASHPATH)/lib
 
 install: clean
+	mkdir -p $(NASHLIBS)
 	cp -r init.sh $(NASHPATH)
 	cp -r aliases $(NASHPATH)
 	git clone https://github.com/NeowayLabs/nashcomplete.git $(NASHLIBS)/nashcomplete
