@@ -1,24 +1,31 @@
 fn gcheck(branch) {
+
+	fn removeorigin(b) {
+		parsed <= split($b, "/")
+		return $parsed[1]
+	}
+
         if $branch == "" {
                 branch <= git branch -r | sed "s/^[* \\t]*//g" | fzf --header "Select the branch: " | xargs echo -n
+                branch <= removeorigin($branch)
                 git checkout $branch
-        } else {
-                branchs <= git branch | sed "s/^[* \\t]*//g"
+		refreshPrompt()
+                return
+        } 
 
-                for b in $branchs {
-                        if $b == $branch {
-                                git checkout $branch
+	branchs <= git branch | sed "s/^[* \\t]*//g"
 
-                                # break isn't implemented yet
-                                return $branch
-                        }
-                }
+	for b in $branchs {
+		if $b == $branch {
+			git checkout $branch
 
-                git checkout -b $branch
-        }
+			# break isn't implemented yet
+			return $branch
+		}
+	}
 
-        refreshPrompt()
-        return $branch
+	git checkout -b $branch
+	refreshPrompt()
 }
 
 fn gclean() {
