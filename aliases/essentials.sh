@@ -32,6 +32,11 @@ fn netstart() {
         sudo systemctl start dhcpcd@enp1s0
 }
 
+fn play(filepath) {
+        location <= format("location=%s", $filepath)
+        gst-launch-1.0 filesrc $location ! decodebin ! pulsesink
+}
+
 bindfn tox tox
 bindfn fromx fromx
 bindfn archupdate archupdate
@@ -40,3 +45,4 @@ bindfn netstart netstart
 bindfn udplisten udplisten
 bindfn netsniff netsniff
 bindfn io io
+bindfn play play
