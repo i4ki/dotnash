@@ -17,8 +17,13 @@ fn changedir(dir) {
 }
 
 fn golab(project) {
+        lambda <= gitlab_neoway_path("lambda", $project)
         pirates <= gitlab_neoway_path("datapirates", $project)
         platform <= gitlab_neoway_path("dataplatform", $project)
+        status <= changedir($lambda)
+        if $status == "0" {
+		return
+        }
         status <= changedir($pirates)
         if $status == "0" {
 		return

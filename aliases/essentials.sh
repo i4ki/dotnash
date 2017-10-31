@@ -37,6 +37,19 @@ fn play(filepath) {
         gst-launch-1.0 filesrc $location ! decodebin ! pulsesink
 }
 
+fn playdir(dir) {
+	filesraw <= ls $dir
+	files <= split($filesraw, "\n")
+	for f in $files {
+		file <= format("%s/%s", $dir, $f)
+		echo
+		echo "playing: " + $file
+		sleep 3
+		play($file)
+		echo "done"
+	}
+}
+
 bindfn tox tox
 bindfn fromx fromx
 bindfn archupdate archupdate
@@ -46,3 +59,4 @@ bindfn udplisten udplisten
 bindfn netsniff netsniff
 bindfn io io
 bindfn play play
+bindfn playdir playdir
