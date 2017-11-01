@@ -44,7 +44,7 @@ fn playdir(dir) {
 		file <= format("%s/%s", $dir, $f)
 		echo
 		echo "playing: " + $file
-		sleep 3
+		sleep 2
 		play($file)
 		echo "done"
 	}
