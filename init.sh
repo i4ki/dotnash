@@ -7,6 +7,7 @@ import "aliases/cd"
 import "aliases/go"
 import "aliases/git"
 import "aliases/vpn"
+import "aliases/vault"
 import "aliases/essentials"
 
 # Setup environment variables
