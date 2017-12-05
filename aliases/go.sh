@@ -7,6 +7,15 @@ fn gitlab_neoway_path(group, project) {
 	)
 }
 
+fn github_path(group, project) {
+        return format(
+		"%s/src/github.com/%s/%s",
+		$GOPATH,
+		$group,
+		$project,
+	)
+}
+
 fn changedir(dir) {
         _, status <= ls $dir >[2] /dev/null
         if $status == "0" {
@@ -16,28 +25,31 @@ fn changedir(dir) {
 	return $status
 }
 
+fn findproject(possibilities) {
+	for possibility in $possibilities {
+		status <= changedir($possibility)
+		if $status == "0" {
+			return
+		}
+	}
+	echo
+        echo "unable to find project: " + $project
+}
+
 fn golab(project) {
         lambda <= gitlab_neoway_path("lambda", $project)
         pirates <= gitlab_neoway_path("datapirates", $project)
         platform <= gitlab_neoway_path("dataplatform", $project)
-        status <= changedir($lambda)
-        if $status == "0" {
-		return
-        }
-        status <= changedir($pirates)
-        if $status == "0" {
-		return
-        }
-        status <= changedir($platform)
-        if $status == "0" {
-		return
-        }
-        echo "unable to find project: " + $project
+
+        findproject(($lambda $pirates $platform))
 }
 
 fn gohub(project) {
-        cd $GOPATH + "/src/github.com/NeowayLabs/" + $project
-        refreshPrompt()
+        neowaylabs <= github_path("NeowayLabs", $project)
+        madlambda <= github_path("madlambda", $project)
+        katcipis <= github_path("katcipis", $project)
+
+        findproject(($neowaylabs $madlambda $katcipis))
 }
 
 bindfn golab golab
