@@ -8,6 +8,8 @@ import "aliases/go"
 import "aliases/git"
 import "aliases/vpn"
 import "aliases/vault"
+import "aliases/ssh"
+import "aliases/vi"
 import "aliases/essentials"
 
 # Setup environment variables
